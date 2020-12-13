@@ -1,0 +1,43 @@
+.search {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Comic Sans MS";
+    margin: 20px;
+}
+input {
+    border-radius: 5px;
+    margin-right: 5px;
+    width: 500px;
+    height: 30px;
+    border-style: none;
+}
+::placeholder {
+    font-family: "Comic Sans MS";
+    color: purple;
+}
+button {
+    border-radius: 5px;
+    font-family: "Comic Sans MS";
+    height: 37px;
+    width: 100px;
+    background-color: purple;
+    color: white;
+    border:2px solid white;
+}
+h1 {
+    color: purple;
+    font-weight: bold;
+}
+button:hover {
+    background-color: black;
+}
+.logo {
+    width: 100px;
+    height: 70px;
+}
+.header {
+    display: flex;
+    flex-direction: row;
+}

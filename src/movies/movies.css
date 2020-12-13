@@ -1,0 +1,26 @@
+.movie {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.movieCard {
+    font-family: "Comic Sans MS";
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #8f5f9c;
+    margin: 10px;
+    width: 350px;
+    border-radius: 25px;
+    color: white;
+    padding: 5px;
+}
+img {
+    border-radius: 25px;
+    height: 370px;
+    width: 250px;
+    padding: 10px;
+}
+
