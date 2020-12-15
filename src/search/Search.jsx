@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import './search.css';
 import Movies from "../movies/Movies";
 import OneMovie from "../oneMovie/OneMovie";
@@ -10,12 +10,23 @@ export default function Search () {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
     const [chosen, setChosen] = useState({});
+    const inputRef = useRef(null);
+
 
     function onSubmit (e) {
     e.preventDefault();
-    setQuery(search);
-    setSearch('');
+    if (search===""){
+        alert("Please fill in search field!")
+        inputRef.current && inputRef.current.focus();
+    } else {
+        setQuery(search);
+        setSearch('');
     }
+    }
+
+    // useEffect(() => {
+    //     inputRef.current && inputRef.current.focus();
+    //     },[])
 
     useEffect(() => {
         const fetchData = () => {
@@ -33,21 +44,26 @@ export default function Search () {
         if (query!==''){
             fetchData();
         }
+        //inputRef.current && inputRef.current.focus();
     },[query]);
 
     const moreMovie = async (id) => {
         const response = await fetch(`https://www.omdbapi.com/?apikey=e4db3ced&i=${id}`);
         const movies = await response.json();
-        console.log(movies);
+        //console.log(movies);
         setChosen (movies);
     }
 
+    //moreMovie();
+
     useEffect(() => {
+        console.log("useEffect2")
         moreMovie();
-    },[chosen])
+    },[])
 
     const goBack = () => {
         setChosen({})
+        //inputRef.current && inputRef.current.focus();
     }
 
     return (
@@ -55,7 +71,7 @@ export default function Search () {
             <div className="search">
                 <div className="header">
                 <h1>MOVIE </h1>
-                <img className="logo" src={cinema}/>
+                <img className="logo" src={cinema} alt="Not found"/>
                 <h1>SEARCH</h1>
                 </div>
             <form onSubmit={onSubmit}>
@@ -63,6 +79,7 @@ export default function Search () {
                     value={search}
                     onChange={e => setSearch(e.target.value)}
                     placeholder="Search for movie"
+                    ref={inputRef}
                 />
                 <button type="submit">SEARCH</button>
             </form>
