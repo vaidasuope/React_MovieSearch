@@ -33,12 +33,16 @@ export default function Search () {
             fetch(`https://www.omdbapi.com/?apikey=e4db3ced&s=${query}`)
             .then((response)=>response.json())
                 .then(movies => {
+                    if (movies.Search){
                     //console.log(movies.Search)
                     setResults(
                         movies.Search.map(item => {
                             return item;
                         })
-                    )
+                    )} else {
+                        setResults([])
+                        alert("Wrong movie name!")
+                    }
                 })
         }
         if (query!==''){
@@ -49,6 +53,7 @@ export default function Search () {
 
     const moreMovie = async (id) => {
         const response = await fetch(`https://www.omdbapi.com/?apikey=e4db3ced&i=${id}`);
+        //console.log(response)
         const movies = await response.json();
         //console.log(movies);
         setChosen (movies);
